@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #2d89ef;
+            color: white;
+        }
+
+        .admin-container {
+            width: 95%;
+            margin: 30px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <h1>Admin Dashboard - Saved Career Predictions</h1>
+
+        <table>
+    <tr>
+        <th>ID</th>
+        <th>Student Name</th>
+        <th>Academic %</th>
+        <th>Python</th>
+        <th>Web</th>
+        <th>Database</th>
+        <th>Communication</th>
+        <th>Problem Solving</th>
+        <th>Interest Area</th>
+        <th>Logical Reasoning</th>
+        <th>Creativity</th>
+        <th>Recommendation 1</th>
+        <th>Recommendation 2</th>
+        <th>Recommendation 3</th>
+    </tr>
+
+    {% for row in records %}
+    <tr>
+        <td>{{ row[0] }}</td>
+        <td>{{ row[1] }}</td>
+        <td>{{ row[2] }}</td>
+        <td>{{ row[3] }}</td>
+        <td>{{ row[4] }}</td>
+        <td>{{ row[5] }}</td>
+        <td>{{ row[6] }}</td>
+        <td>{{ row[7] }}</td>
+        <td>{{ row[8] }}</td>
+        <td>{{ row[9] }}</td>
+        <td>{{ row[10] }}</td>
+        <td>{{ row[11] }}</td>
+        <td>{{ row[12] }}</td>
+        <td>{{ row[13] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+        <div style="margin-top: 20px;">
+            <a href="{{ url_for('change_password') }}">
+                <button type="button" style="padding: 10px 20px; background-color: #4f46e5; color: white; border: none; border-radius: 5px; cursor: pointer;">Change Password</button>
+            </a>
+            <a href="/logout">
+                <button type="button" style="padding: 10px 20px; background-color: #ef4444; color: white; border: none; border-radius: 5px; cursor: pointer; margin-left: 10px;">Logout</button>
+            </a>
+        </div>
+        <br>
+        <a href="/" style="text-decoration: none; color: #4f46e5; font-weight: bold;">← Go Back to Home</a>
+    </div>
+</body>
+</html>

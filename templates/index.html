@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI-Based Career Guidance System</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="background-shape shape-1"></div>
+    <div class="background-shape shape-2"></div>
+
+    <nav class="navbar">
+      <div class="logo">AI Career <span>Guidance</span></div>
+      <a href="/admin_login" class="admin-link">Admin Login</a>
+    </nav>
+
+    <main class="main-wrapper">
+      <div class="container">
+        <!-- Left Side -->
+        <section class="hero">
+          <!-- <div class="hero-badge">AI + Machine Learning Project</div> -->
+          <h1>Discover the right career path with AI</h1>
+          <p>
+            Enter your academic details, technical skills, and interests to get
+            smart career recommendations based on machine learning.
+          </p>
+
+          <div class="feature-list">
+            <div class="feature-item">
+              <div class="feature-icon">01</div>
+              <span>Get personalized career recommendations</span>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">02</div>
+              <span>Analyze technical and soft skills</span>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">03</div>
+              <span>Store results in database and review in admin panel</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Right Side Form -->
+        <section class="form-card">
+          <h2>Career Prediction Form</h2>
+          <p class="subtext">
+            Fill in your details below to receive the top career
+            recommendations.
+          </p>
+
+          <form action="/predict" method="POST">
+            <div class="section-title"></div>
+            <div class="form-grid">
+              <div class="input-group full-width">
+                <label for="student_name">Student Name</label>
+                <input
+                  type="text"
+                  id="student_name"
+                  name="student_name"
+                  placeholder="Enter your full name"
+                  required
+                />
+              </div>
+
+              <div class="input-group full-width">
+                <label for="academic_percentage">Academic Percentage</label>
+                <input
+                  type="number"
+                  id="academic_percentage"
+                  name="academic_percentage"
+                  placeholder="Enter percentage"
+                  min="0"
+                  max="100"
+                  step="0.01"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="section-title"></div>
+            <div class="form-grid">
+              <div class="input-group">
+                <label for="python_skill">Python Skill (1-10)</label>
+                <input
+                  type="number"
+                  id="python_skill"
+                  name="python_skill"
+                  placeholder="e.g. 8"
+                  min="1"
+                  max="10"
+                  required
+                />
+              </div>
+
+              <div class="input-group">
+                <label for="web_skill">Web Skill (1-10)</label>
+                <input
+                  type="number"
+                  id="web_skill"
+                  name="web_skill"
+                  placeholder="e.g. 7"
+                  min="1"
+                  max="10"
+                  required
+                />
+              </div>
+
+              <div class="input-group">
+                <label for="database_skill">Database Skill (1-10)</label>
+                <input
+                  type="number"
+                  id="database_skill"
+                  name="database_skill"
+                  placeholder="e.g. 6"
+                  min="1"
+                  max="10"
+                  required
+                />
+              </div>
+
+              <div class="input-group">
+                <label for="problem_solving_skill">Problem Solving Skill (1-10)</label>
+                <input
+                  type="number"
+                  id="problem_solving_skill"
+                  name="problem_solving_skill"
+                  placeholder="e.g. 8"
+                  min="1"
+                  max="10"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="section-title"></div>
+            <div class="form-grid">
+              <div class="input-group">
+                <label for="communication_skill">Communication Skill (1-10)</label>
+                <input
+                  type="number"
+                  id="communication_skill"
+                  name="communication_skill"
+                  placeholder="e.g. 7"
+                  min="1"
+                  max="10"
+                  required
+                />
+              </div>
+
+              <div class="input-group">
+                <label for="logical_reasoning">Logical Reasoning (1-10)</label>
+                <input
+                  type="number"
+                  id="logical_reasoning"
+                  name="logical_reasoning"
+                  placeholder="e.g. 8"
+                  min="1"
+                  max="10"
+                  required
+                />
+              </div>
+
+              <div class="input-group">
+                <label for="creativity">Creativity (1-10)</label>
+                <input
+                  type="number"
+                  id="creativity"
+                  name="creativity"
+                  placeholder="e.g. 6"
+                  min="1"
+                  max="10"
+                  required
+                />
+              </div>
+
+              <div class="input-group">
+                <label for="interest_area">Interest Area</label>
+                <select id="interest_area" name="interest_area" required>
+                  <option value="">Select Interest Area</option>
+                  <option value="AI">AI</option>
+                  <option value="Cyber Security">Cyber Security</option>
+                  <option value="Database">Database</option>
+                  <option value="Design">Design</option>
+                  <option value="Software">Software</option>
+                  <option value="Web Development">Web Development</option>
+                </select>
+              </div>
+            </div>
+
+            <button type="submit" class="btn-primary">
+              Get Career Recommendation
+            </button>
+
+            <p class="footer-note">
+              Your information will be used only for career prediction and
+              stored securely.
+            </p>
+          </form>
+        </section>
+      </div>
+    </main>
+
+    <!-- Chat Toggle Button -->
+    <button
+      id="chatToggleBtn"
+      onclick="openChat()"
+      style="
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 60px;
+        height: 60px;
+        border: none;
+        border-radius: 50%;
+        background: #2d89ef;
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        z-index: 9999;
+      "
+    >
+      💬
+    </button>
+
+    <!-- Chatbot Box -->
+    <div
+      id="chatContainer"
+      style="
+        display: none;
+        width: 350px;
+        height: 500px;
+        position: fixed;
+        bottom: 90px;
+        right: 20px;
+        background: white;
+        border: 1px solid #ccc;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+        overflow: hidden;
+        z-index: 9999;
+      "
+    >
+      <!-- Header -->
+      <div
+        style="
+          background: #2d89ef;
+          color: white;
+          padding: 12px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        "
+      >
+        <span style="font-size: 20px; font-weight: bold">AI Career Chatbot</span>
+        <button
+          onclick="closeChat()"
+          style="
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 22px;
+            cursor: pointer;
+          "
+        >
+          &times;
+        </button>
+      </div>
+
+      <!-- Chat Messages -->
+      <div
+        id="chatBox"
+        style="
+          height: 380px;
+          overflow-y: auto;
+          padding: 10px;
+          background: #f9f9f9;
+        "
+      ></div>
+
+      <!-- Input Area -->
+      <div
+        style="
+          display: flex;
+          padding: 10px;
+          gap: 8px;
+          border-top: 1px solid #ddd;
+          background: white;
+        "
+      >
+        <input
+          type="text"
+          id="userInput"
+          placeholder="Ask a question..."
+          style="
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            outline: none;
+          "
+        />
+        <button
+          onclick="sendMessage()"
+          style="
+            padding: 10px 14px;
+            background: #2d89ef;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+          "
+        >
+          Send
+        </button>
+      </div>
+    </div>
+
+    <script>
+      function openChat() {
+        document.getElementById("chatContainer").style.display = "block";
+        document.getElementById("chatToggleBtn").style.display = "none";
+
+        let chatBox = document.getElementById("chatBox");
+        if (chatBox.innerHTML.trim() === "") {
+          chatBox.innerHTML = `
+            <div style="margin: 8px 0; text-align: left;">
+              <span style="background: #e2e3e5; padding: 8px 12px; border-radius: 8px; display: inline-block; max-width: 80%;">
+                Hello! I am your AI career assistant. Ask me about careers, skills, or roadmaps.
+              </span>
+            </div>
+          `;
+        }
+      }
+
+      function closeChat() {
+        document.getElementById("chatContainer").style.display = "none";
+        document.getElementById("chatToggleBtn").style.display = "block";
+      }
+
+      async function sendMessage() {
+        let userInput = document.getElementById("userInput");
+        let chatBox = document.getElementById("chatBox");
+        let message = userInput.value.trim();
+
+        if (message === "") return;
+
+        chatBox.innerHTML += `
+          <div style="margin: 8px 0; text-align: right;">
+            <span style="background: #d1ecf1; padding: 8px 12px; border-radius: 8px; display: inline-block; max-width: 80%;">
+              ${message}
+            </span>
+          </div>
+        `;
+
+        userInput.value = "";
+        chatBox.scrollTop = chatBox.scrollHeight;
+
+        try {
+          let response = await fetch("/chat", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ message: message })
+          });
+
+          let data = await response.json();
+
+          chatBox.innerHTML += `
+            <div style="margin: 8px 0; text-align: left;">
+              <span style="background: #e2e3e5; padding: 8px 12px; border-radius: 8px; display: inline-block; max-width: 80%; white-space: pre-wrap;">
+                ${data.reply}
+              </span>
+            </div>
+          `;
+        } catch (error) {
+          chatBox.innerHTML += `
+            <div style="margin: 8px 0; text-align: left;">
+              <span style="background: #f8d7da; color: #721c24; padding: 8px 12px; border-radius: 8px; display: inline-block; max-width: 80%;">
+                Error connecting to chatbot.
+              </span>
+            </div>
+          `;
+        }
+
+        chatBox.scrollTop = chatBox.scrollHeight;
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById("userInput").addEventListener("keypress", function (event) {
+          if (event.key === "Enter") {
+            sendMessage();
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

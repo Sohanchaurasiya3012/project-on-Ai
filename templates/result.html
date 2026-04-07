@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Career Recommendations</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="result-page">
+      <div class="result-container">
+        <div class="result-left">
+          <div class="section-header">
+            <h1>Top 3 Career Recommendations</h1>
+            <p>
+              Based on your profile, these are the most suitable career options
+              for you.
+            </p>
+          </div>
+
+          <div class="career-cards">
+            {% for career, confidence in recommendations %}
+            <div class="career-card {% if loop.index == 1 %}top-career{% endif %}">
+              <div class="career-rank">#{{ loop.index }}</div>
+
+              <div class="career-info">
+                <h2>{{ career }}</h2>
+
+                <div class="confidence-row">
+                  <span class="confidence-label">Confidence</span>
+                  <span class="confidence-badge">{{ confidence }}%</span>
+                </div>
+
+                <div class="progress-bar">
+                  <div class="progress-fill" style="width: {{ confidence }}%;"></div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="result-right">
+          <div class="roadmap-card">
+            <h2>Suggested Roadmap</h2>
+            <h3>{{ recommendations[0][0] }}</h3>
+
+            <ul class="roadmap-list">
+              {% for step in roadmap %}
+              <li>{{ step }}</li>
+              {% endfor %}
+            </ul>
+
+            <a href="{{ url_for('home') }}" class="back-btn">← Go Back</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
